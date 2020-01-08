@@ -7,6 +7,8 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+
+  <link rel="stylesheet" href="public/themes/gitalk.css">	//
 </head>
 <body>
   <div id="app"></div>
@@ -14,9 +16,64 @@
     window.$docsify = {
       name: '',
       repo: '',
-	  loadSidebar: true
+	  loadSidebar: true    //显示侧边栏，文件为同目录下 _sidebar.md
+	  //coverpage: true		//显示封面，文件为同目录下 _coverpage.md
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+
+    <!-- gitalk评论插件 -->
+
+	<!--
+	<script type="text/javascript" src="public/plugins/components/jquery3.2.1.js"></script>
+	-->
+	
+	<script async defer type="text/javascript" src="public/plugins/search.min.js"></script>
+	<script async defer type="text/javascript" src="public/plugins/ga.min.js"></script>
+	<!-- 语言高亮 -->
+	<script async defer type="text/javascript" src="public/plugins/components/prism-javascript.min.js"></script>
+	<script async defer type="text/javascript" src="public/plugins/components/prism-bash.min.js"></script>
+	<script async type="text/javascript" src="public/plugins/components/prism-markdown.min.js"></script>
+
+	/*
+	<!-- 引入图片缩放 -->
+	<script type="text/javascript" src="public/plugins/components/zoom-image-cdn.js"></script>
+	<!-- 复制到剪切板 -->
+	<script type="text/javascript" src="public/plugins/docsify-copy-code.min.js"></script>
+	<!-- 点击红心效果 -->
+	<script async defer type="text/javascript" src="public/plugins/components/love-click.min.js"></script>
+	*/
+
+	<!-- MD5加密 -->
+	<script type="text/javascript" src="public/plugins/components/md5.min.js"></script>
+
+	<script type="text/javascript" src="public/plugins/components/gitalk.min.js"></script>
+	<script type="text/javascript">
+		window.title_id = window.location.hash.match(/#(.*?)([?]|$)/) ? window.location.hash.match(/#(.*?)([?]|$)/)[1] : '/';
+		const gitalk = new Gitalk({
+			clientID: 'd92ec3d6ad20929d5732',
+			clientSecret: '1b0eef3317b030679e1c8af18bf6ffcc51871a36',
+			repo: 'wangtan2020.github.io',	// //存储你评论 issue 的 Github 仓库名
+			owner: 'wangtan2020',
+			admin: ['wangtan2020'],	// 这个仓库的管理员
+			title: decodeURI(window.title_id),
+			distractionFreeMode: false,	// 是否添加全屏遮罩
+			id: md5(window.location.hash),	// 页面的唯一标识，gitalk 会根据这个标识自动创建的issue的标签,我们使用页面的相对路径作为标识
+			enableHotKey: true,	// 提交评论快捷键(cmd/ctrl + enter) 
+		})
+	</script>
+	<script type="text/javascript" src="public/plugins/components/docsify.gitalk.js"></script>
+
+	<script async defer type="text/javascript">
+		// 百度统计：统计网站流量
+		var _hmt = _hmt || [];
+		(function () {
+			var hm = document.createElement("script");
+			hm.src = "https://hm.baidu.com/hm.js?d430159a0359ff1a404f70543defe02b";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+
 </body>
 </html>
